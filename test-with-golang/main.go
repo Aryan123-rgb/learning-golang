@@ -1,14 +1,27 @@
 package main
 
-import "fmt"
+import "strings"
 
-func Hello(name string) string {
+var Greetings = map[string]string{
+	"english":  "Hello",
+	"french":   "Bonjour",
+	"spanish":  "Hola",
+	"german":   "Guten Tag",
+	"italian":  "Ciao",
+	"japanese": "こんにちは",
+	"chinese":  "你好",
+}
+
+func Hello(name string, language string) string {
 	if name == "" {
-		return "Hello World"
+		name = "World"
 	}
-	return "Hello " + name
+	_, greet := Greetings[strings.ToLower(language)]
+	if !greet {
+		return "Invalid Language"
+	}
+	return Greetings[strings.ToLower(language)] + " " + name  
 }
 
 func main() {
-	fmt.Println(Hello("Chris"))
 }
